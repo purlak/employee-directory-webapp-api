@@ -31,7 +31,13 @@ class Api::EmployeesController < ApplicationController
   end 
 
   def destroy
+    if @employee.destroy
+      render json: {message: "Delete Successful"}, status: 204
 
+    else 
+      render json: {message: "Unable to Delete"}, status: 400
+
+    end 
   end 
 
   private
