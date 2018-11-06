@@ -11,12 +11,27 @@ class Api::EmployeesController < ApplicationController
     if @employee.save
       render json: @employee
     else
-      render json: { errors:  {message: "This object failed to save"}}
-
+      render json: {message: employee.errors}, status: 400
     end 
   end 
 
+  def show
+
+  end 
+
+  def update
+
+  end 
+
+  def destroy
+
+  end 
+
   private
+
+  def set_employee
+
+  end 
 
   def employee_params
     params.require(:employee).permit(:first_name, :last_name, :title, :department, :location)
