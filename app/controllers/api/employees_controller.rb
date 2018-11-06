@@ -1,6 +1,6 @@
 class Api::EmployeesController < ApplicationController
 
-  before_action :set_employee, only: [:show, :edit. :destroy]
+  before_action :set_employee, only: [:show, :update, :destroy]
   def index
     @employees = Employee.all
     render json: @employees
