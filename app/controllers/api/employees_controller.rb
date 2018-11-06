@@ -21,7 +21,12 @@ class Api::EmployeesController < ApplicationController
   end 
 
   def update
+    if @employee.update(employee_params)
+      render json: @employee
+    else 
+      render json: {message: employee.errors}, status: 400
 
+    end 
 
   end 
 
