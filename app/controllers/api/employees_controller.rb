@@ -1,5 +1,6 @@
 class Api::EmployeesController < ApplicationController
 
+  before_action :set_employee, only: [:show, :edit. :destroy]
   def index
     @employees = Employee.all
     render json: @employees
@@ -16,10 +17,11 @@ class Api::EmployeesController < ApplicationController
   end 
 
   def show
-
+    render json: @employee
   end 
 
   def update
+
 
   end 
 
@@ -30,7 +32,7 @@ class Api::EmployeesController < ApplicationController
   private
 
   def set_employee
-
+    @employee = Employee.find_by(id: params[:id]) 
   end 
 
   def employee_params
