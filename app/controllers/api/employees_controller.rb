@@ -11,7 +11,7 @@ class Api::EmployeesController < ApplicationController
     if @employee.save
       render json: @employee
     else
-      render json: ( errors:  (message: "This object failed to save"))
+      render json: { errors:  {message: "This object failed to save"}}
 
     end 
   end 
