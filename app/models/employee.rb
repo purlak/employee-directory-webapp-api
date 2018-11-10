@@ -1,8 +1,10 @@
 class Employee < ApplicationRecord
   has_secure_password
   
-  validates :first_name, presence:true
-  validates :last_name, presence:true
+  validates :name, presence:true
+  validates :username, presence:true
+  # validates :password, presence:true
+  
   validates :title, presence:true
   validates :department, presence:true
   validates :location, presence:true
