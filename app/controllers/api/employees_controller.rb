@@ -1,6 +1,7 @@
 class Api::EmployeesController < ApplicationController
 
   before_action :set_employee, only: [:show, :update, :destroy]
+
   def index
     @employees = Employee.all
     render json: @employees
@@ -12,7 +13,7 @@ class Api::EmployeesController < ApplicationController
     if @employee.save
       render json: { token: Auth.create_token(employee) } #@employee
     else
-      render json: {errors: {message: employee.errors}}, status: 401
+      render json: {errors: {message: employee.errors }}, status: 401
     end 
   end 
 
@@ -24,7 +25,7 @@ class Api::EmployeesController < ApplicationController
     if @employee.update(employee_params)
       render json: @employee
     else 
-      render json: {errors: (message: employee.errors}}, status: 400
+      render json: {errors: {message: employee.errors}}, status: 400
 
     end 
 
