@@ -10,9 +10,9 @@ class Api::EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      render json: @employee
+      render json: { token: Auth.create_token(employee) } #@employee
     else
-      render json: {message: employee.errors}, status: 400
+      render json: {errors: {message: employee.errors}}, status: 401
     end 
   end 
 
@@ -24,7 +24,7 @@ class Api::EmployeesController < ApplicationController
     if @employee.update(employee_params)
       render json: @employee
     else 
-      render json: {message: employee.errors}, status: 400
+      render json: {errors: (message: employee.errors}}, status: 400
 
     end 
 
@@ -32,10 +32,10 @@ class Api::EmployeesController < ApplicationController
 
   def destroy
     if @employee.destroy
-      render json: {message: "Delete Successful"}, status: 204
+      render json: {errors: {message: "Delete Successful"}}, status: 204
 
     else 
-      render json: {message: "Unable to Delete"}, status: 400
+      render json: {errors: {message: "Unable to Delete"}}, status: 400
 
     end 
   end 
