@@ -3,21 +3,21 @@ require 'Auth'
 class Api::SessionsController < ApplicationController
 
   def login
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      token = Auth.create_token({ id: user.id, name: user.name, coldSensitivity: user.cold_sensitivity, optsHandsFree: user.opts_hands_free,})
-      render json: { user: user, token: token }
+    employee = Employee.find_by(username: params[:username])
+    if employee && employee.authenticate(params[:password])
+      token = Auth.create_token({ id: employee.id, name: employee.name})
+      render json: { employee: employee, token: token }
     else
       render json: { errors: { message: "Unable to find a user with those credentials" } }, status: 401
     end
   end
 
   def find
-    current_user = Auth.decode_token(params[:token])
-    if current_user
-      render json: { user: current_user }
+    current_employee = Auth.decode_token(params[:token])
+    if current_employee
+      render json: { employee: current_employee }
     else
-      render json: { errors: { message: "Unable to find user" } }, status: 401
+      render json: { errors: { message: "Unable to find Employee" } }, status: 401
     end
   end
 
