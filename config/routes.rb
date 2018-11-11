@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     post '/login' => 'sessions#login'
     post '/find' => 'sessions#find'
     get '/logout' => 'sessions#destroy'
+    get '/search/:name' => 'employees#search'
 
   end 
 end
