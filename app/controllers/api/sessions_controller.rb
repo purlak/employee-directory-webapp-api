@@ -1,10 +1,10 @@
-require 'Auth'
 
 class Api::SessionsController < ApplicationController
 
   def login
     employee = Employee.find_by(username: params[:username])
     if employee && employee.authenticate(params[:password])
+      binding.pry
       token = Auth.create_token({ id: employee.id, name: employee.name})
       render json: { employee: employee, token: token }
     else

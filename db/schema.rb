@@ -24,3 +24,4 @@ ActiveRecord::Schema.define(version: 2018_11_10_190718) do
   end
 
 end
+ß
