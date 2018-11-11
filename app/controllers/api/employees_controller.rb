@@ -31,6 +31,20 @@ class Api::EmployeesController < ApplicationController
 
   end 
 
+  def search
+    # binding.pry
+    @searchItem = Employee.find_by(name: params[:name]) 
+    
+    if @searchItem
+
+      render json: @searchItem
+    else 
+      render json: {errors: {message: "Employee not found in local database" }}
+    end 
+
+  end 
+
+
   def destroy
     if @employee.destroy
       render json: {errors: {message: "Delete Successful"}}, status: 204
