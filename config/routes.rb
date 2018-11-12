@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   namespace :api do
     resources :employees
 
-    post '/signup' => 'employees#create'
+    post '/signup' => 'employees#signup'
+    post '/add' => 'employees#create'
     post '/edit' => 'employees#update'
     post '/login' => 'sessions#login'
     post '/find' => 'sessions#find'
