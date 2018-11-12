@@ -44,6 +44,16 @@ class Api::EmployeesController < ApplicationController
 
   end 
 
+  def signup
+     @employee = Employee.new(employee_params)
+
+    if @employee.save
+      render json: { token: Auth.create_token(employee) } #@employee
+    else
+      render json: {errors: {message: employee.errors }}, status: 401
+    end 
+  end 
+
 
   def destroy
     if @employee.destroy
